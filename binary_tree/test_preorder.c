@@ -11,17 +11,15 @@
 extern struct TreeNode* create_node(int val, int left, int right);
 extern int* preorderTraversal(struct TreeNode* root, int* returnSize);
 
-int isEqual(int* expected, int *result) {
-	if (expected && !result) {
+int isEqual(int* expected, int *result, expected_size, result_size) {
+	if (expected_size != result_size) {
 		return(0);
 	}
 	printf("test\n");
-	while (expected && result) {
-		if (*expected != *result) {
+	for (int i = 0; i < expected_size; i++) {
+		if (expected[i] && result[i] && expected[i] != result[i]) {
 			return(0);
 		}
-		expected++;
-		result++;
 	}
 	return(1);
 }
@@ -39,8 +37,8 @@ void printTestName(int test, char *test_name) {
 	printf("%d. %s: ", test, test_name);
 }
 
-void checkPass(int *expected, int *result) {
-	if (isEqual(expected, result)) {
+void checkPass(int *expected, int *result, int expected_size, int result_size) {
+	if (isEqual(expected, result, expected_size, result_size)) {
                 printf("PASS\n");
         }
 	else {
@@ -54,7 +52,7 @@ int *mallocExpected(int size) {
 }
 
 int main () {
-	int test = 1, size = 0;
+	int test = 1, size = 0, result_size = 0;
 	struct TreeNode *root = NULL;	
 	char test_name[20];
 
@@ -63,12 +61,13 @@ int main () {
 	printTestName(1, "Test Empty");
 	int *expected = NULL; //empty tree
 	int *result = NULL; //empty tree
-	result = preorderTraversal(NULL, 0);
-	checkPass(expected, result);
+	result = preorderTraversal(NULL, &result_size);
+	checkPass(expected, result, size, result_size);
 	free(result);
 
 	test = 2;
 	size = 1;
+	result_size = 0;
 	strncpy(test_name, "Root Node", 9);
         test_name[9] = '\0';
 	printTestName(test, test_name);
@@ -77,6 +76,6 @@ int main () {
 	}
 	expected[0] = 5;
 	root = create_node(5, 0, 0);
-	result = preorderTraversal(root, 0);
-	checkPass(expected, result);	
+	result = preorderTraversal(root, &result_size);
+	checkPass(expected, result, size, result_size);	
 }
