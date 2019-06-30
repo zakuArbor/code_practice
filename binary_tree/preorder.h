@@ -1,10 +1,9 @@
 #include "tree.h"
 
-int* preorderTraversal(struct TreeNode* root, int* returnSize) {
+int* preorderTraversal(struct TreeNode *root, int *returnSize) {
     if (!root) {
         return(NULL);
     }
-    
     int left_size = 0, right_size = 0;
     int *result = malloc(sizeof(int));
     int *left_arr = NULL;
