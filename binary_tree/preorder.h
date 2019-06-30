@@ -9,7 +9,7 @@ int* preorderTraversal(struct TreeNode *root, int *returnSize) {
     int *left_arr = NULL;
     int *right_arr = NULL;
     int offset = 1;
-    *result = root->val;
+    *result = root->val;printf("node root: %d\n", root->val);
     if (root->left) {
         left_arr = preorderTraversal(root->left, &left_size);
     }
