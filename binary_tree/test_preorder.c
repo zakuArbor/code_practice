@@ -12,16 +12,16 @@
 *
 **/
 
-//extern struct TreeNode* create_node(int *tree_array, struct TreeNode *root, int i, int size);
+//extern struct TreeNode* createNode(int *tree_array, struct TreeNode *root, int i, int size);
 extern int* preorderTraversal(struct TreeNode* root, int* returnSize);
 
-int isEqual(int* expected, int *result, expected_size, result_size) {
+int isEqual(int* expected, int *result, int expected_size, int result_size) {
 	if (expected_size != result_size) {
 		return(0);
 	}
 	for (int i = 0; i < expected_size; i++) {
 		if (VERBOSE) 
-			printf("\t%d v.s %d\n", result[i], expected[i]);
+			printf("\n\t%d (result) v.s %d (expected)\n", result[i], expected[i]);
 		if (expected[i] && result[i] && expected[i] != result[i]) {
 			return(0);
 		}
@@ -29,8 +29,10 @@ int isEqual(int* expected, int *result, expected_size, result_size) {
 	return(1);
 }
 
-void diffence(int*expected, int*result) {
-
+void printArray(int *array, int size) {
+	for (int i = 0; i < size; i++) {
+		printf(" %d ", array[i]);
+	}
 }
 
 void printBorder() {
@@ -56,41 +58,57 @@ int *mallocExpected(int size) {
 	return malloc(sizeof(int) * size);
 }
 
-void cleanup_test(int *result_size, int *result, struct TreeNode *root) {
+void cleanTest(int *result_size, int *result, struct TreeNode *root) {
 	*result_size = 0;
 	free(result);
-	free(root);
+	cleanTree(root);
 }
 
 int main () {
-	int test = 1, size = 0, result_size = 0;
+	int size = 0, result_size = 0;
 	struct TreeNode *root = NULL;	
-	int expected[14] = {5, 3, 8, 2, 4, 6, 10, 0, 0, 0, 0, 0, 0, 9};
-	
+	int tree[14] = {5, 3, 8, 2, 4, 6, 10, 0, 0, 0, 0, 0, 0, 9};
+	int expected[14]; //expected result for preorder
+
 	printTestName(1, "Test Empty");
 	int *result = NULL; //empty tree
 	result = preorderTraversal(NULL, &result_size);
 	checkPass(NULL, result, size, result_size); //expected = NULL to represent empty tree
-	cleanup_test(&result_size, result, root);
+	cleanTest(&result_size, result, root);
+
+	expected[0] = 5;
 
 	printTestName(2, "Root Node");
 	size = 1;
-	root = create_node(expected, NULL, 0, size);
+	root = createNode(tree, NULL, 0, size);
 	result = preorderTraversal(root, &result_size);
 	checkPass(expected, result, size, result_size);
-        cleanup_test(&result_size, result, root);
+        cleanTest(&result_size, result, root);
+
+	expected[1] = 3;
 
 	printTestName(3, "Left Node");
 	size = 2;
-        root = create_node(expected, NULL, 0, size);
+        root = createNode(tree, NULL, 0, size);
         result = preorderTraversal(root, &result_size);
         checkPass(expected, result, size, result_size);
-        cleanup_test(&result_size, result, root);
+        cleanTest(&result_size, result, root);
+
+	expected[2] = 8;
 
 	printTestName(3, "Right Node");
         size = 3;
-        root = create_node(expected, NULL, 0, size);
+        root = createNode(tree, NULL, 0, size);
         result = preorderTraversal(root, &result_size);
         checkPass(expected, result, size, result_size);
-        cleanup_test(&result_size, result, root);
+        cleanTest(&result_size, result, root);
+
+	int expected_tree[8] = {5, 3, 2, 4, 8, 6, 10};
+
+	printTestName(4, "Depth 3 - 7 Nodes");
+	size = 7;
+        root = createNode(tree, NULL, 0, size);
+        result = preorderTraversal(root, &result_size);
+        checkPass(expected_tree, result, size, result_size);
+        cleanTest(&result_size, result, root);
 }
