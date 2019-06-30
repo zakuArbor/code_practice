@@ -69,8 +69,16 @@ int main () {
 	cleanup_test(&result_size, result, root);
 
 	printTestName(2, "Root Node");
+	size = 1;
 	root = create_node(expected, NULL, 0, size);
 	result = preorderTraversal(root, &result_size);
 	checkPass(expected, result, size, result_size);
+        cleanup_test(&result_size, result, root);
+
+	printTestName(3, "Left Node");
+	size = 2;
+        root = create_node(expected, NULL, 0, size);
+        result = preorderTraversal(root, &result_size);
+        checkPass(expected, result, size, result_size);
         cleanup_test(&result_size, result, root);
 }
