@@ -1,4 +1,7 @@
 #include <stdlib.h>
+
+#ifndef TREE_H
+#define TREE_H
 #if !defined(NULL)
 #define NULL 0
 #endif
@@ -42,3 +45,4 @@ void cleanTree(struct TreeNode *root) {
 		free(root);
 	}
 }
+#endif
