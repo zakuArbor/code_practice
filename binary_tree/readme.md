@@ -4,9 +4,11 @@
 * Preorder Traversal
 * Inorder Traversal
 * Postorder Traversal
+* Binary Search Tree
 
 ## To Implement
-* Binary Search Tree
+* Add node to BST
+* Delete node in BST
 
 ## Testing
 Basic testing has been performed. It is not exhaustive testing. To test, you need to compile with the macro `ORDER=i` where i:
