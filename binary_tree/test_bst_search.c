@@ -20,6 +20,7 @@ int main () {
 
 	root = createNode(tree, NULL, 0, 0);
 	printTestName(1, "Test Empty");
+	bstRec(root, 10);
 	if (node) {
 		printf("FAIL\n");
 	}
