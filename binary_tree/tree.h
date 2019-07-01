@@ -45,4 +45,17 @@ void cleanTree(struct TreeNode *root) {
 		free(root);
 	}
 }
+
+int *mergeTreeArray(int size, int *arr, int *result, int *returnSize) {
+        if (size) {
+                result = realloc(result, (*returnSize + size) * sizeof(int));
+                for (int i = 0; i < size; i++) {
+                        *(result+(*returnSize)+i) = *(arr+i);
+                }
+                (*returnSize) += size;
+                free(arr);
+        }
+        return(result);
+}
+
 #endif

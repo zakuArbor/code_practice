@@ -61,7 +61,7 @@ int *mallocExpected(int size) {
 }
 
 void cleanTest(int *result_size, int *result, struct TreeNode *root) {
-	*result_size = 0;printf("\nclean\n");
+	*result_size = 0;
 	free(result);
 	cleanTree(root);
 }
