@@ -18,7 +18,6 @@ int main () {
 	struct TreeNode *root = NULL;
 	int num;
 
-	root = createNode(tree, NULL, 0, 0);
 	printTestName(1, "Test Empty");
 	bstRec(root, 10);
 	if (node) {

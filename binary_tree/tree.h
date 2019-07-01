@@ -27,7 +27,7 @@ struct TreeNode {
 * 		left node   = i*2 + 1
 * 		right node  = (i+1) * 2
 */
-struct TreeNode* createNode(int *tree_array, struct TreeNode *root, int i, int size) {
+struct TreeNode* createTree(int *tree_array, struct TreeNode *root, int i, int size) {
 	struct TreeNode * node = NULL;
 	if (i < size && tree_array[i]) {
 		node = (struct TreeNode *)malloc(sizeof(struct TreeNode));

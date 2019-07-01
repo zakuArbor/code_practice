@@ -96,7 +96,7 @@ int main () {
 
 	printTestName(2, "Root Node");
 	size = 1;
-	root = createNode(tree, NULL, 0, size);
+	root = createTree(tree, NULL, 0, size);
 	result = traversal(root, &result_size);
 	checkPass(expected, result, size, result_size);
         cleanTest(&result_size, result, root);
@@ -113,7 +113,7 @@ int main () {
 
 	printTestName(3, "Left Node");
 	size = 2;
-        root = createNode(tree, NULL, 0, size);
+        root = createTree(tree, NULL, 0, size);
         result = traversal(root, &result_size);
         checkPass(expected, result, size, result_size);
         cleanTest(&result_size, result, root);
@@ -132,7 +132,7 @@ int main () {
 
 	printTestName(3, "Left and Right Node");
         size = 3;
-        root = createNode(tree, NULL, 0, size);
+        root = createTree(tree, NULL, 0, size);
         result = traversal(root, &result_size);
         checkPass(expected, result, size, result_size);
         cleanTest(&result_size, result, root);
@@ -157,7 +157,7 @@ int main () {
 
 	printTestName(4, "Height 2 - 5 Nodes");
         size = 5;
-        root = createNode(tree, NULL, 0, size);
+        root = createTree(tree, NULL, 0, size);
         result = traversal(root, &result_size);
         checkPass(expected, result, size, result_size);
         cleanTest(&result_size, result, root);
@@ -173,7 +173,7 @@ int main () {
 
 	printTestName(5, "Depth 3 - 7 Nodes");
 	size = 7;
-        root = createNode(tree, NULL, 0, size);
+        root = createTree(tree, NULL, 0, size);
         result = traversal(root, &result_size);
         checkPass(expected_tree, result, size, result_size);
         cleanTest(&result_size, result, root);
@@ -188,7 +188,7 @@ int main () {
 
 	printTestName(6, "Right subtree: Depth 2 - 3 Nodes");
         size = 3;
-        root = createNode(tree2, NULL, 0, 7);
+        root = createTree(tree2, NULL, 0, 7);
         result = traversal(root, &result_size);printArray(result, result_size);
         checkPass(expected_tree2, result, size, result_size);
         cleanTest(&result_size, result, root);
