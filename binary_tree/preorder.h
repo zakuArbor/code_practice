@@ -1,5 +1,17 @@
 #include "tree.h"
 
+int *mergeTree(int size, int *arr, int *result, int *returnSize) {
+	if (size) {
+		result = realloc(result, (*returnSize + size) * sizeof(int));
+		for (int i = 0; i < size; i++) {
+		        *(result+(*returnSize)+i) = *(arr+i);
+    		}
+		(*returnSize) += size;
+		free(arr);
+	}
+	return(result);
+}
+
 int* preorderTraversal(struct TreeNode *root, int *returnSize) {
     if (!root) {
         return(NULL);
@@ -8,30 +20,16 @@ int* preorderTraversal(struct TreeNode *root, int *returnSize) {
     int *result = malloc(sizeof(int));
     int *left_arr = NULL;
     int *right_arr = NULL;
-    int offset = 1;
-    *result = root->val;printf("node root: %d\n", root->val);
+    *result = root->val;
+    *returnSize = 1;
     if (root->left) {
         left_arr = preorderTraversal(root->left, &left_size);
+	result = mergeTree(left_size, left_arr, result, returnSize);
     }
     if (root->right) {
         right_arr = preorderTraversal(root->right, &right_size);
+	result = mergeTree(right_size, right_arr, result, returnSize);
     }
-    (*returnSize) = 1 + left_size + right_size;
-    if (left_size || right_size) {
-        result = realloc(result, (*returnSize) * sizeof(int));
-    }
-
-    for (int i = 0; i < left_size; i++) {
-        *(result+offset+i) = *(left_arr+i);
-    }
-
-    offset = 1 + left_size;
-    for (int i = 0; i < right_size; i++) {
-        *(result+offset+i) = *(right_arr+i);
-    }
-    free(left_arr);
-    free(right_arr);
-
     return(result);
 }
 
