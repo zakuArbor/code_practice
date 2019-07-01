@@ -32,8 +32,8 @@ struct TreeNode* createTree(int *tree_array, struct TreeNode *root, int i, int s
 	if (i < size && tree_array[i]) {
 		node = (struct TreeNode *)malloc(sizeof(struct TreeNode));
 		node->val = tree_array[i];
-		node->left = createNode(tree_array, node, i*2 + 1, size);
-		node->right = createNode(tree_array, node, (i+1) * 2, size);
+		node->left = createTree(tree_array, node, i*2 + 1, size);
+		node->right = createTree(tree_array, node, (i+1) * 2, size);
 	}
 	return(node);
 }
