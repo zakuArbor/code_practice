@@ -19,7 +19,7 @@ int main () {
 	int num;
 
 	printTestName(1, "Test Empty");
-	bstRec(root, 10);
+	search(root, 10);
 	if (node) {
 		printf("FAIL\n");
 	}
@@ -29,28 +29,28 @@ int main () {
 
 	printTestName(2, "Find node 3 - left child - height 1");
 	num = 3;
-	root = createNode(tree, NULL, 0, 14);
-	node = bstRec(root, num);
+	root = createTree(tree, NULL, 0, 14);
+	node = search(root, num);
 	checkPass(num, node);
 
 	printTestName(3, "Find node 8 - right child - height 1");	
 	num = 8;
-	node = bstRec(root, num);
+	node = search(root, num);
         checkPass(num, node);
 
 	printTestName(4, "Find node 2 - left subtree - height 2");
         num = 2;
-        node = bstRec(root, num);
+        node = search(root, num);
         checkPass(num, node);
 
 	printTestName(5, "Find node 9 - right subtree - height 2");
         num = 9;
-        node = bstRec(root, num);
+        node = search(root, num);
         checkPass(num, node);
 
 	printTestName(6, "Find non-existing node");
         num = 99;
-        node = bstRec(root, num);
+        node = search(root, num);
 	if (node) {
                 printf("FAIL\n");
         }
