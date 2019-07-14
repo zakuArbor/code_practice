@@ -88,15 +88,38 @@ class Node:
 		'''
 		self._right = right;
 
-	def insert(self: 'Node', val: int, root: 'Node' = None) -> 'None':
+	def insert(self: 'Node', val: int, root: 'Node' = None) -> None:
 		'''
 		Insert new node to the correct position in the binary tree
+
+		>>> node = Node()
+		>>> node.insert(5)
+		>>> node.getVal()
+		5
+		>>> node = Node(5)
+		>>> node.insert(3)
+		>>> node.getLeft().getVal()
+		3
+		>>> node.insert(8)
+		>>> node.getRight().getVal()
+		8
+		>>> node.insert(2)
+		>>> node.getLeft().getLeft().getVal()
+		2
 		'''
-		if (val):
-			if (not root and not self._val):
-				self.setVal(val)
-	
-					
+		def helper(root: 'Node' = None, val: int = 0) -> 'Node':	
+			if root:
+				if root.getVal() > val:
+					root.setLeft(helper(root.getLeft(), val))
+				elif root.getVal() < val:
+					root.setRight(helper(root.getRight(), val))
+			else:
+				return Node(val)
+			return root
+		if self.getVal():
+			helper(self, val);			
+		else:
+			self.setVal(val)
 
 def create_tree(arr: List[int]) -> Node:
 	'''
