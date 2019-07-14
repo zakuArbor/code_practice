@@ -27,6 +27,19 @@ class Node:
 		'''
 		return self._val;
 
+	def setVal(self: 'Node', val: int) -> None:
+		'''
+		Set the value of the node
+		
+		>>> node = Node()
+		>>> node._val is None
+		True
+		>>> node.setVal(1)
+		>>> node._val
+		1
+		'''
+		self._val = val
+
 	def getLeft(self: 'Node') -> 'Node':
 		'''
 		Return the left child (Node)
@@ -58,7 +71,7 @@ class Node:
                 >>> node = Node()
                 >>> node.getRight() is None
                 True
-                >>> node = Node(5, Node(8))
+                >>> node = Node(5, None, Node(8))
                 >>> node.getRight()._val #we are assuming getVal does not work and for the sake of testing, we will break encapsulation rule
                 8
                 '''
@@ -74,6 +87,16 @@ class Node:
 		9
 		'''
 		self._right = right;
+
+	def insert(self: 'Node', val: int, root: 'Node' = None) -> 'None':
+		'''
+		Insert new node to the correct position in the binary tree
+		'''
+		if (val):
+			if (not root and not self._val):
+				self.setVal(val)
+	
+					
 
 def create_tree(arr: List[int]) -> Node:
 	'''
