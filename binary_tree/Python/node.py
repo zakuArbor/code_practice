@@ -1,0 +1,98 @@
+from typing import List
+from math import floor, log
+
+class Node:
+	def __init__(self: 'Node', val: 'int' = None, left: 'Node' = None, right: 'Node' = None) -> None:
+		''' 
+		A new Node in a Binary Tree
+
+		:param val: the value of the node
+		:param left: the left child of the node (Constraint: all descendent of the left node are strictly less than the parent)
+		:param right: the right child of the node (Constraint: all descendent of the right node are strictly greater than the parent)
+		'''
+		self._val = val;
+		self._left = left;
+		self._right = right;
+	
+	def getVal(self: 'Node') -> int:
+		'''
+		Return the value of the node
+
+		>>> node = Node()
+		>>> node.getVal() is None
+		True
+		>>> node = Node(1, None, None)
+		>>> node.getVal()
+		1
+		'''
+		return self._val;
+
+	def getLeft(self: 'Node') -> 'Node':
+		'''
+		Return the left child (Node)
+
+		>>> node = Node()
+		>>> node.getLeft() is None
+		True
+		>>> node = Node(5, Node(2))
+		>>> node.getLeft()._val #we are assuming getVal does not work and for the sake of testing, we will break encapsulation rule
+		2
+		'''
+		return self._left
+
+	def setLeft(self: 'Node', left: 'Node' = None) -> None:
+                '''
+                Set right child
+
+                >>> node = Node(5, None, None)
+                >>> node.setLeft(Node(3))
+                >>> node._left._val #assume none of other methods work for the sake of testing, wil break encapsulation rule
+                3
+                '''
+                self._left = left;
+
+	def getRight(self: 'Node') -> 'Node':
+                '''
+                Return the left child (Node)
+
+                >>> node = Node()
+                >>> node.getRight() is None
+                True
+                >>> node = Node(5, Node(8))
+                >>> node.getRight()._val #we are assuming getVal does not work and for the sake of testing, we will break encapsulation rule
+                8
+                '''
+                return self._right
+
+	def setRight(self: 'Node', right: 'Node' = None) -> None:
+		'''
+		Set right child
+
+		>>> node = Node(5, None, None)
+		>>> node.setRight(Node(9))
+		>>> node._right._val #assume none of other methods work for the sake of testing, wil break encapsulation rule
+		9
+		'''
+		self._right = right;
+
+def create_tree(arr: List[int]) -> Node:
+	'''
+	Create a binary tree based on the list and return the root of the tree
+	
+	number of nodes = 2^(h+1) - 1
+	number of levels = floor(log_2(n))
+
+	:param arr: a List of Int where:
+		i*2: parent
+		i*2+1: left child
+		(i+1)*2: right child
+	'''
+	def helper(arr: List[int], pos: int) -> Node:
+		size = len(arr)
+		node = None
+		if (i < size):
+			node = Node(arr[i])
+		
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
