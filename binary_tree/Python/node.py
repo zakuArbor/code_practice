@@ -120,6 +120,30 @@ class Node:
 			helper(self, val);			
 		else:
 			self.setVal(val)
+	def search(self: 'Node', val: int) -> 'Node':
+		'''
+		Return the node that contains the val that we are searching for. Return None if not found
+		>>> node = Node(1)
+		>>> node.search(5) == None
+		True
+		>>> node = Node(5, Node(3), Node(7))
+		>>> node.search(5) == node
+		True
+		>>> node.search(7) == node._right
+		True
+		>>> node.search(10) == None
+		True
+		'''
+		def _helper(node: 'Node', val: int) -> 'Node':
+			if node:
+				if node._val == val:
+					return node
+				elif node._val > val: #left
+					return _helper(node._left, val)
+				else: #right
+					return _helper(node._right, val)
+			return None
+		return _helper(self, val)
 
 def create_tree(arr: List[int]) -> Node:
 	'''
