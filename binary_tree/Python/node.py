@@ -145,6 +145,63 @@ class Node:
 			return None
 		return _helper(self, val)
 
+	def delete(self: 'Node', val: int) -> None:
+		'''
+		Delete the node from the tree if exist and return the new tree
+		This implementation does not update the actual tree. User is responsible to update the tree accordingly
+
+		>>> node = Node(5)
+		>>> node.delete(5) == None
+		True
+		>>> node = Node(5, Node(3))
+		>>> tmp = node.delete(3)
+		>>> tmp._left == None
+		True
+		>>> tmp._val == 5
+		True
+		>>> node = Node(5, None, Node(7))
+		>>> tmp = node.delete(7)
+		>>> tmp._val == 5
+		True
+		>>> node =  Node(5, Node(3, Node(1)), Node(7, Node(6), Node(10)))
+		>>> tmp = node.delete(5)
+		>>> tmp._val == 6
+		True
+		>>> tmp._left._val == 3
+		True
+		>>> tmp._right._val == 7
+		True
+		>>> tmp._right._left == None
+		True
+		'''
+		def _findMin(node: 'Node') -> Node:
+			if node._left:
+				return _findMin(node._left)
+			return node
+		def _helper(node: 'Node', val: int) -> Node:
+			if node:
+				if node._val > val: #left
+                                        node._left = _helper(node._left, val)
+				elif node._val < val: #right
+                                        node._right = _helper(node._right, val)
+				else: #node._val == val
+					if not node._left and not node._right:
+						node = None
+					elif not node._left and node._right:
+						node = None
+						return node._right
+					elif not node._right and node._left:
+						node = None
+						return node._left
+					else:
+						#two children - return the successor of the subtree which is the min of the right for this implementation
+						tmp = _findMin(node._right)
+						node._val = tmp._val
+						node._right = _helper(node._right, tmp._val)
+			return node
+		return _helper(self, val)
+				
+
 def create_tree(arr: List[int]) -> Node:
 	'''
 	Create a binary tree based on the list and return the root of the tree
