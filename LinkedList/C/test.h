@@ -43,3 +43,12 @@ int check_result(int *list, int size, LL *result) {
 	printf("PASS\n");
         return(0);
 }
+
+int test_result(int i, LL *ll) {
+	if (ll && ll->head == i) {
+		printf("Pass\n");
+		return(0);
+	}
+	printf("Fail\n");
+	return(1);
+}

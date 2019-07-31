@@ -44,6 +44,15 @@ LL* createLL(int *lst, int size) {
 	return(head);
 }
 
+void freeLL(LL *ll) {
+	LL *tmp;
+	while (ll) {
+		tmp = ll->next;
+		free (ll);
+		ll = tmp;	
+	}
+}
+
 void printLL(LL *ll) {
 	LL *curr = ll;
 	while (curr) {
