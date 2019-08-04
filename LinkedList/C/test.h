@@ -10,14 +10,20 @@ void printTestHeader(int *test_num, char *name) {
 int assert(LL *expected, LL *result) {
 	LL *exp = expected;
 	LL *res = result;
-	while (expected && result) {
+	while (exp && res) {
 		if (expected->data != result->data) {
 			printf("Expected: %d\nGot: %d\n", exp->data, res->data);
 			return(1);
 		}
+		exp = exp->next;
+		res = res->next;
 	}
 	if (exp != res) {
 		printf("Length Mismatch\n");
+		printf("Expected: ");
+		printLL(expected);
+		printf("Got: ");
+		printLL(result);
 		return(1);
 	}
 	printf("PASS\n");

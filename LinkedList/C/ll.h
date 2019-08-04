@@ -22,7 +22,9 @@ LL* createLL(int *lst, int size) {
 	LL *curr = NULL;
 	LL *prev = NULL;
 	for (int i = 0; i < size; i++) {
+		#ifdef VERBOSE
 		printf("Creating node: %d\n", lst[i]);
+		#endif
 		curr = malloc(sizeof(LL));
 	        if (!curr) {
                 	perror("Failed to alloc memory\n");
@@ -93,16 +95,21 @@ void delete(LL **ll, int i) {
 	}
 }
 
-void insert(LL *ll, int i) {
-	LL *node = ll;
-	while (node && node->data > i) {
-		node = node->next;
+void insert(LL **ll, int i) {
+	LL **node = ll;
+	LL *prev = NULL;
+	while (*node && (*node)->data < i) {
+		prev = *node;
+		node = &((*node)->next);
 	}
-	LL *tmp = node;
-	if (!(node = malloc(sizeof(LL)))) {
+	LL *tmp = *node;
+	if (!(*node = malloc(sizeof(LL)))) {
 		perror("Failed to alloc memory\n");
 	}
-	node->data = i;
-	node->next = tmp;
+	(*node)->data = i;
+	(*node)->next = tmp;
+	if (prev) {
+		prev->next = *node;
+	}
 }
 #endif
