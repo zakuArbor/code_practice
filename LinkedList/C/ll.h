@@ -76,16 +76,21 @@ LL* search(LL *ll, int i) {
 	return(curr);
 }
 
-void delete(LL *ll, int i) {
-	LL *node = ll;
-	while (node && node->head != i) {
-		node = node->next;
+void delete(LL **ll, int i) {
+	if (*ll) {
+		LL **node_indirect = ll;
+		while (*node_indirect && (*node_indirect)->head != i) {
+			node_indirect = &((*node_indirect)->next);
+		}
+		LL *tmp = (*node_indirect)->next;
+		if (*node_indirect) {
+			printf("trying to delete: %d\n", (*node_indirect)->head);
+			*node_indirect = tmp;	
+			free(*node_indirect);
+			//printf("replaced with: %d\n", node->head);
+			printLL(*ll);
+		}
 	}
-	LL *tmp = node;
-	if (tmp) {
-		free(tmp);
-	}
-	node = node->next;	
 }
 
 void insert(LL *ll, int i) {
