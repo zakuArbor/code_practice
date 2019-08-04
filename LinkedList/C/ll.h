@@ -11,14 +11,14 @@
 
 struct LinkedList
 {
-	int head;
+	int data;
 	struct LinkedList *next;
 };
 
 typedef struct LinkedList LL;
 
 LL* createLL(int *lst, int size) {
-	LL *head = NULL;
+	LL *data = NULL;
 	LL *curr = NULL;
 	LL *prev = NULL;
 	for (int i = 0; i < size; i++) {
@@ -28,20 +28,20 @@ LL* createLL(int *lst, int size) {
                 	perror("Failed to alloc memory\n");
         	        exit(1);
 	        }
-		if (!head) {
-			head = curr;
-			prev = head;
+		if (!data) {
+			data = curr;
+			prev = data;
 		} else {
 			prev->next = curr;
 			prev = curr;
 		}
-		curr->head = lst[i];
+		curr->data = lst[i];
 		curr = curr->next;
 	}
 	if (prev) {
 		prev->next = NULL;
 	}
-	return(head);
+	return(data);
 }
 
 void freeLL(LL *ll) {
@@ -56,7 +56,7 @@ void freeLL(LL *ll) {
 void printLL(LL *ll) {
 	LL *curr = ll;
 	while (curr) {
-		printf("%d", curr->head);
+		printf("%d", curr->data);
 		if (curr->next) {
 			printf(" -> ");
 		}
@@ -68,7 +68,7 @@ void printLL(LL *ll) {
 LL* search(LL *ll, int i) {
 	LL *curr = ll;
 	while (curr) {
-		if (curr->head == i) {
+		if (curr->data == i) {
 			break;
 		}
 		curr = curr->next;
@@ -79,15 +79,15 @@ LL* search(LL *ll, int i) {
 void delete(LL **ll, int i) {
 	if (*ll) {
 		LL **node_indirect = ll;
-		while (*node_indirect && (*node_indirect)->head != i) {
+		while (*node_indirect && (*node_indirect)->data != i) {
 			node_indirect = &((*node_indirect)->next);
 		}
 		LL *tmp = (*node_indirect)->next;
 		if (*node_indirect) {
-			printf("trying to delete: %d\n", (*node_indirect)->head);
+			printf("trying to delete: %d\n", (*node_indirect)->data);
 			*node_indirect = tmp;	
 			free(*node_indirect);
-			//printf("replaced with: %d\n", node->head);
+			//printf("replaced with: %d\n", node->data);
 			printLL(*ll);
 		}
 	}
@@ -95,14 +95,14 @@ void delete(LL **ll, int i) {
 
 void insert(LL *ll, int i) {
 	LL *node = ll;
-	while (node && node->head > i) {
+	while (node && node->data > i) {
 		node = node->next;
 	}
 	LL *tmp = node;
 	if (!(node = malloc(sizeof(LL)))) {
 		perror("Failed to alloc memory\n");
 	}
-	node->head = i;
+	node->data = i;
 	node->next = tmp;
 }
 #endif

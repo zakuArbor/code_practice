@@ -11,8 +11,8 @@ int assert(LL *expected, LL *result) {
 	LL *exp = expected;
 	LL *res = result;
 	while (expected && result) {
-		if (expected->head != result->head) {
-			printf("Expected: %d\nGot: %d\n", exp->head, res->head);
+		if (expected->data != result->data) {
+			printf("Expected: %d\nGot: %d\n", exp->data, res->data);
 			return(1);
 		}
 	}
@@ -29,8 +29,8 @@ int check_result(int *list, int size, LL *result) {
 	LL *res = result;
 	int i = 0;
 	while (i < size && res) {
-		if (res->head != list[i]) {
-			printf("Expected: %d\nGot: %d\n", list[i], res->head);
+		if (res->data != list[i]) {
+			printf("Expected: %d\nGot: %d\n", list[i], res->data);
 		}
 		i++;
 		res = res->next;
@@ -45,7 +45,7 @@ int check_result(int *list, int size, LL *result) {
 }
 
 int test_result(int i, LL *ll) {
-	if (ll && ll->head == i) {
+	if (ll && ll->data == i) {
 		printf("Pass\n");
 		return(0);
 	}
