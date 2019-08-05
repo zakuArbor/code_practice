@@ -112,4 +112,15 @@ void insert(LL **ll, int i) {
 		prev->next = *node;
 	}
 }
+
+LL *reverse_list(LL *ll) {
+	if (!ll || (ll && !ll->next)) {
+		return ll;
+	}
+	LL *next = ll->next; //the next node in the linked list before reversing
+	LL *tmp = reverse_list(ll->next);
+	ll->next = NULL;
+	next->next = ll;
+	return tmp;
+}
 #endif
