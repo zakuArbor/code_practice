@@ -17,10 +17,21 @@
 * Delete
 * Reverse
 
+### Sorting Algorithm
+* Merge Sort (C)
+
 ## To Implement
 * HashTable
 * AVL Trees
 * Heaps
+* Quick Sort
+* Bubbble Sort
+* Tims Sort
+* Dijkstra
+* A* Search
+* Iterative Depth Search
+* BFS
+* DFS
 * Explain Algorithm and Complexity of each Data Structure and its operations
 
 ## Testing
