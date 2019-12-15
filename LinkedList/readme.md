@@ -3,14 +3,7 @@
 ## Implementations:
 * Search [Done]
 * Array to LinkedList [Done]
-* Insert
+* Insert [Done]
 * Delete [Done]
-* Reverse LinkedList
-
-## To Implement
-* Reverse LinkedList
-
-## To Test
-* Insert
-
+* Reverse LinkedList [Done]
 
