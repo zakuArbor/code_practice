@@ -18,7 +18,9 @@
 * Reverse
 
 ### Sorting Algorithm
+* Bubble Sort (C)
 * Merge Sort (C)
+* Insertion Sort (C)
 
 ## To Implement
 * HashTable
