@@ -35,7 +35,7 @@ int find_min_index(int *arr, int len, int curr) {
 	return min_index;
 }
 
-void insertion_sort(int *arr, int len) {
+void selection_sort(int *arr, int len) {
 	for (int i = 0; i < len - 1; i++) {
 		//find min index
 		int min_index = find_min_index(arr, len, i);
@@ -67,7 +67,7 @@ int main() {
 		expected[i] = num; 
 	}
 
-	insertion_sort(arr, len);
+	selection_sort(arr, len);
 
 	printf("==========\n");
 	printf("Got:\n");
