@@ -17,17 +17,21 @@
 * Delete
 * Reverse
 
+### HashTable (C)
+* Hash collision via chaining 
+
 ### Sorting Algorithm
 * Bubble Sort (C)
 * Merge Sort (C)
-* Insertion Sort (C)
+* Selection Sort (C)
+* Selection Sort (C)
+
 
 ## To Implement
-* HashTable
+* HashTable (open addressing, using AVL to chain)
 * AVL Trees
 * Heaps
 * Quick Sort
-* Bubbble Sort
 * Tims Sort
 * Dijkstra
 * A* Search
